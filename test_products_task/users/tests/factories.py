@@ -5,7 +5,7 @@ import factory
 from django.conf import settings
 from faker import Faker
 
-from test_products_task.common.factories import BaseModelFactory
+from common.factories import BaseModelFactory
 
 User = settings.AUTH_USER_MODEL
 TEST_USER_PASSWORD = uuid.uuid4().hex
