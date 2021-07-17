@@ -11,6 +11,7 @@ import environ
 ROOT_DIR = environ.Path(__file__) - 2  # (/a/myfile.py - 2 = /)
 APPS_DIR = ROOT_DIR.path('test_products_task')
 # sys.path.append(str(ROOT_DIR))
+sys.path.append(str(APPS_DIR))
 
 env = environ.Env(
     DJANGO_DEBUG=(bool, False),
@@ -38,7 +39,7 @@ DEBUG = env.bool("DJANGO_DEBUG")
 
 SECRET_KEY = env('DJANGO_SECRET_KEY')
 
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS')
+ALLOWED_HOSTS = ['*']
 
 ADMINS = tuple([tuple(admins.split(':')) for admins in env.list('DJANGO_ADMINS')])
 
