@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from test_products_task.payments.models import Customer, Order
+from payments.models import Customer, Order
 
 
 @admin.register(Customer)

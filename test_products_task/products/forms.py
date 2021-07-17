@@ -2,8 +2,8 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 
-from config import settings
-from test_products_task.products.models import Like, Product
+from django.conf import settings
+from products.models import Like, Product
 
 User = get_user_model()
 

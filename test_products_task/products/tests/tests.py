@@ -7,9 +7,9 @@ from django.urls import reverse
 from django.utils import timezone
 from freezegun import freeze_time
 
-from test_products_task.products.models import Category, Product, Like
-from test_products_task.products.tests.factories import CategoryFactory, ProductFactory, LikeFactory, CommentFactory
-from test_products_task.users.tests.factories import UserFactory
+from products.models import Category, Product, Like
+from products.tests.factories import CategoryFactory, ProductFactory, LikeFactory, CommentFactory
+from users.tests.factories import UserFactory
 
 User = get_user_model()
 

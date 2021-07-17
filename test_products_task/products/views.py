@@ -13,10 +13,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DetailView, FormView, TemplateView
 
-from test_products_task.common.mixins import ActiveTabMixin
-from test_products_task.common.utils import get_ip_from_request
-from test_products_task.products.forms import LikeForm
-from test_products_task.products.models import Category, Product, Like
+from common.mixins import ActiveTabMixin
+from common.utils import get_ip_from_request
+from products.forms import LikeForm
+from products.models import Category, Product, Like
 
 
 class CategoryListView(ActiveTabMixin, ListView):

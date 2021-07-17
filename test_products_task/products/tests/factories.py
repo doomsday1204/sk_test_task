@@ -2,9 +2,9 @@ import factory
 from factory import fuzzy
 from faker import Faker
 
-from test_products_task.common.factories import BaseModelFactory
-from test_products_task.products.models import Product, Category, Like, Comment
-from test_products_task.users.tests.factories import UserFactory
+from common.factories import BaseModelFactory
+from products.models import Product, Category, Like, Comment
+from users.tests.factories import UserFactory
 
 fake = Faker()
 

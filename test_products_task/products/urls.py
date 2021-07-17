@@ -3,7 +3,7 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.conf.urls import url, include
-from test_products_task.products import views
+from products import views
 
 urlpatterns = [
     url(r'^$', views.CategoryListView.as_view(), name='category_list'),

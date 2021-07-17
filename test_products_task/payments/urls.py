@@ -3,7 +3,7 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.conf.urls import url, include
-from test_products_task.payments import views
+from payments import views
 
 urlpatterns = [
     url(r'^order/pay/$', views.OrderPayView.as_view(), name='order_pay'),

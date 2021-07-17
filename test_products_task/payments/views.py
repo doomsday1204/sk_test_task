@@ -11,8 +11,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
-from test_products_task.payments.forms import OrderPayForm
-from test_products_task.payments.models import Order, Customer
+from payments.forms import OrderPayForm
+from payments.models import Order, Customer
 
 
 class OrderPayView(FormView):
