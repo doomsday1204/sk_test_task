@@ -13,6 +13,7 @@ class ProductAdmin(admin.ModelAdmin):
         'category',
         'image',
     )
+    view_on_site = True
 
 
 @admin.register(Category)
@@ -22,6 +23,7 @@ class CategoryAdmin(admin.ModelAdmin):
         'slug',
     )
     readonly_fields = ('slug',)
+    view_on_site = True
 
 
 @admin.register(Like)

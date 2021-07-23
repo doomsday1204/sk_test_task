@@ -9,7 +9,7 @@ from model_utils.models import TimeStampedModel
 
 class Category(models.Model):
     name = models.CharField(_('Name'), max_length=200)
-    slug = models.SlugField(max_length=200, unique=True, blank=True, editable=False)
+    slug = models.SlugField(max_length=200, unique=True, blank=False, editable=False)
 
     PARAMS = Choices(
         ('following', 'following'),
@@ -20,11 +20,6 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        if self.pk is None:  # works on object creation only
-            self.slug = slugify(self.name)
-        super(Category, self).save(*args, **kwargs)
-
 
 class Product(TimeStampedModel):
     GRADE_CHOICES = Choices(
@@ -34,11 +29,11 @@ class Product(TimeStampedModel):
     )
 
     name = models.CharField(_('Name'), max_length=200)
-    slug = models.SlugField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, unique=True, blank=True, editable=False)
     price = models.DecimalField(_('Price'), decimal_places=2, max_digits=9)
     description = models.TextField(blank=True)
     category = models.ForeignKey(Category, related_name='products')
-    image = models.ImageField(upload_to='product', null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
 
     class Meta:
         ordering = ('name',)
@@ -47,13 +42,13 @@ class Product(TimeStampedModel):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('shop:product_detail',
+        return reverse('product_detail',
                        args=[self.category.slug, self.slug])
 
-
-class Image(models.Model):
-    image = models.ImageField()
-    product = models.ForeignKey(Product, default=None, related_name='images', on_delete=models.PROTECT)
+    def save(self, *args, **kwargs):
+        if self.pk is None:  # works on object creation only
+            self.slug = slugify(self.name)
+        super(Product, self).save(*args, **kwargs)
 
 
 class Like(TimeStampedModel):

@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.db.models import Sum, Case, When, IntegerField, Count, F, Q
 from django.db.models.functions import Coalesce
 from django.http import Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -22,6 +22,8 @@ from products.models import Category, Product, Like
 class CategoryListView(ActiveTabMixin, ListView):
     model = Category
     active_tab = 'category_list'
+    active_tab2 = 'category_detail'
+    active_tab3 = 'product_detail'
 
     def get_ordered_grade_info(self):
         return []
@@ -39,11 +41,19 @@ class CategoryDetailView(DetailView):
     PARAM_PRICE_FROM = 'price_from'
     PARAM_PRICE_TO = 'price_to'
 
+    def get_ordered_grade_info(self):
+        return []
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['grade_info'] = self.get_ordered_grade_info()
+        return context
+
 
 class ProductDetailView(DetailView):
     model = Product
     slug_url_kwarg = 'product_slug'
-    category = None
+    category = 'category'
 
     def get(self, request, *args, **kwargs):
         category_slug = kwargs['category_slug']
@@ -83,4 +93,6 @@ class AddToCartView(AjaxResponseMixin, JSONResponseMixin, FormView):
 class CartView(ActiveTabMixin, TemplateView):
     active_tab = 'cart'
     template_name = 'products/cart.html'
+
+
 

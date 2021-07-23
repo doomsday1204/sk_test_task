@@ -143,8 +143,9 @@ TEMPLATES = [
 STATIC_URL = '/static/'
 STATIC_ROOT = env('DJANGO_STATIC_ROOT')
 
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 MEDIA_ROOT = env('DJANGO_MEDIA_ROOT')
+
 
 STATICFILES_DIRS = (
     str(APPS_DIR.path('static')),

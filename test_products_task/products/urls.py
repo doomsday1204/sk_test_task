@@ -13,3 +13,4 @@ urlpatterns = [
     url(r'^(?P<category_slug>.+)/(?P<product_slug>.+)/$', views.ProductDetailView.as_view(), name='product_detail'),
     url(r'^(?P<category_slug>.+)/$', views.CategoryDetailView.as_view(), name='category_detail'),
 ]
+

@@ -5,7 +5,7 @@
     <div class="list-group">
     {% for product in category.products.all %}
         <a href="{{ product.get_absolute_url }}" class="list-group-item">
-            <h4 class="list-group-item-heading">{{ product.name }}</h4>
+            <h4 class="list-group-item-heading">{{ object.products.all }} {{ product.name.all }}</h4>
             <p class="list-group-item-text">{{ product.price }}</p>
         </a>
 
