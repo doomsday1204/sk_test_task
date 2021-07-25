@@ -22,8 +22,6 @@ from products.models import Category, Product, Like
 class CategoryListView(ActiveTabMixin, ListView):
     model = Category
     active_tab = 'category_list'
-    active_tab2 = 'category_detail'
-    active_tab3 = 'product_detail'
 
     def get_ordered_grade_info(self):
         return []
@@ -35,7 +33,7 @@ class CategoryListView(ActiveTabMixin, ListView):
 
 
 class CategoryDetailView(DetailView):
-    model = Category
+    model = Product
     slug_url_kwarg = 'category_slug'
     PARAM_FOLLOWING = 'following'
     PARAM_PRICE_FROM = 'price_from'
@@ -46,7 +44,7 @@ class CategoryDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['grade_info'] = self.get_ordered_grade_info()
+        context['Product'] = self.get_ordered_grade_info()
         return context
 
 
@@ -58,7 +56,7 @@ class ProductDetailView(DetailView):
     def get(self, request, *args, **kwargs):
         category_slug = kwargs['category_slug']
         try:
-            self.category = Category.objects.get(slug=category_slug)
+            self.category = Category.category_slug.get(slug=category_slug)
         except Category.DoesNotExist:
             raise Http404
         return super().get(request, *args, **kwargs)

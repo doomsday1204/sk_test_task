@@ -5,6 +5,11 @@ from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 from model_utils import Choices
 from model_utils.models import TimeStampedModel
+"""
+Понимаю что сделал очень мало. Есть огромное желание учиться дальше
+Спасибо за то что уделили время. Очень хотелось попытать свои силы и попасть на интернатуру
+
+"""
 
 
 class Category(models.Model):
@@ -42,7 +47,7 @@ class Product(TimeStampedModel):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('product_detail',
+        return reverse('category',
                        args=[self.category.slug, self.slug])
 
     def save(self, *args, **kwargs):
